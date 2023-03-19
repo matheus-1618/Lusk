@@ -8,7 +8,7 @@
 ![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
 
 
-<img src='Lusk.png'/>
+<img src='assets/Lusk.png'/>
 
 ## Serverless Architecture orchestration Interface for AWS
 
