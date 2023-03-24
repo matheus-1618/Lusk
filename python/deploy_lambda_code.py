@@ -18,7 +18,7 @@ os.chdir('../lambda_functions/')
 os.system(f"zip {function_name}.zip {function_name}.py")
 
 os.chdir('../terraform/')
-os.system(f'''terraform apply -var="function_name={function_name}" -var="filename=../lambda_functions/{function_name}.zip" -var="handler={function_name}.lambda_handler" -auto-approve''')
+os.system(f'''terraform apply -target=module.lambda -var="function_name={function_name}" -var="filename=../lambda_functions/{function_name}.zip" -var="handler={function_name}.lambda_handler" -auto-approve''')
 
 os.chdir('../lambda_functions/')
 os.system(f"rm {function_name}.zip")
@@ -33,6 +33,6 @@ output_str = output.decode("utf-8")
 # Imprime a saída
 myobj = {'somekey': 'somevalue'}
 
-x = requests.post(output_str.split('"')[1]+'/example', json = myobj)
+x = requests.post(output_str.split('"')[1]+'/execution', json = myobj)
 
 print(x.text)
