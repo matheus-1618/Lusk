@@ -18,6 +18,11 @@ sudo apt update
 sudo apt-get install terraform
 
 
+#Criando diretórios para utilização
+mkdir lambda_functions
+mkdir python
+mkdir terraform
+
 # Configurando depedências da automação via Python
 cd python/
 python3 -m virtualenv venv
