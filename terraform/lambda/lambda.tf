@@ -83,6 +83,14 @@ resource "aws_api_gateway_deployment" "api_deployment" {
   stage_name  = "prod"
 }
 
+module "cors" {
+  source = "squidfunk/api-gateway-enable-cors/aws"
+  version = "0.3.3"
+
+  api_id          = aws_api_gateway_rest_api.lusk_api.id
+  api_resource_id = aws_api_gateway_resource.lusk_api_resource.id
+}
+
 #Defining API Gateway URL as output to consume afterwards the creation
 output "api_endpoint" {
   value = aws_api_gateway_deployment.api_deployment.invoke_url

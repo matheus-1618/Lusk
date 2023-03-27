@@ -1,3 +1,8 @@
+variable "url_repository" {
+  type    = string
+  default = "www.google.com"
+}
+
 variable "function_name" {
   type    = string
   default = "my_lambda_function"

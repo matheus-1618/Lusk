@@ -9,7 +9,16 @@ module "lambda" {
   handler = var.handler
 }
 
+module "amplify" {
+  source = "./amplify"
+  url_repository = var.url_repository
+}
+
 output "my_lambda_api_endpoint" {
   value = module.lambda.api_endpoint
+}
+
+output "amplify_url" {
+  value = module.amplify.app_url
 }
 
