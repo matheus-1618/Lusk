@@ -12,3 +12,8 @@ variable "handler" {
   type    = string
   default = "lambda.handler"
 }
+
+variable "language" {
+  type    = string
+  default = "python3.8"
+}

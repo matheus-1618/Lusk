@@ -17,3 +17,23 @@ variable "handler" {
   type    = string
   default = "lambda.handler"
 }
+
+variable "language" {
+  type    = string
+  default = "python3.8"
+}
+
+variable "app_name" {
+  type    = string
+  default = "Lusk-App"
+}
+
+variable "framework" {
+  type    = string
+  default = "React"
+}
+
+variable "token" {
+  type    = string
+  default = "None"
+}

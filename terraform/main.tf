@@ -7,11 +7,14 @@ module "lambda" {
   function_name = var.function_name
   filename     = var.filename
   handler = var.handler
+  language = var.language
 }
 
 module "amplify" {
   source = "./amplify"
   url_repository = var.url_repository
+  app_name = var.app_name
+  token = var.token
 }
 
 output "my_lambda_api_endpoint" {

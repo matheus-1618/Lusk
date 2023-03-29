@@ -4,7 +4,7 @@ resource "aws_lambda_function" "lambda_function" {
   filename     =  var.filename
   role         =  aws_iam_role.lambda_execution.arn
   handler      =  var.handler
-  runtime      =  "python3.8"
+  runtime      =  var.language
 }
 
 #IAM roles to execute Lambda

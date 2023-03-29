@@ -1,8 +1,6 @@
+# Role to Amplify evoke it's resources
 resource "aws_iam_role" "amplify_role" {
   name = "amplify_deploy_terraform_role"
-
-  # Terraform's "jsonencode" function converts a
-  # Terraform expression result to valid JSON syntax.
   assume_role_policy = <<POLICY
 {
   "Version": "2012-10-17",
@@ -19,6 +17,7 @@ resource "aws_iam_role" "amplify_role" {
 POLICY
 }
 
+# Attached policy that amplify will use in the prior Role
 resource "aws_iam_role_policy" "amplify_role_policy" {
   name = "amplify_iam_role_policy"
   role = aws_iam_role.amplify_role.id
@@ -26,11 +25,12 @@ resource "aws_iam_role_policy" "amplify_role_policy" {
   policy = file("${path.cwd}/amplify/amplify_role_policies.json")
 }
 
-resource "aws_amplify_app" "example_app" {
-  name       = "Lusk-app" 
+#Amplify App and it's build configurations
+resource "aws_amplify_app" "lusk_app" {
+  name       = var.app_name
   repository = var.url_repository 
-  oauth_token = "" 
-  access_token = "" 
+  oauth_token = var.token
+  access_token = var.token
 
   iam_service_role_arn = aws_iam_role.amplify_role.arn
 
@@ -67,14 +67,14 @@ frontend:
 EOF
 
 }
-
-resource "aws_amplify_branch" "example" {
-  app_id  = aws_amplify_app.example_app.id
+# Configurations of the branch used in the deploy
+resource "aws_amplify_branch" "main_branch" {
+  app_id  = aws_amplify_app.lusk_app.id
   branch_name = "main"
-  framework = "React"
+  framework = var.framework
   stage = "PRODUCTION"
 }
 
 output "app_url" {
-  value = aws_amplify_branch.example.app_id
+  value = aws_amplify_branch.main_branch.app_id
 }
