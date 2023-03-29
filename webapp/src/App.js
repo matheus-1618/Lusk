@@ -8,7 +8,7 @@ function App() {
 
   async function doPostRequest() {
     let payload = { name: 'John Doe', occupation: 'gardener' };
-    let res = await axios.post('https://vrmrnqpubg.execute-api.us-east-1.amazonaws.com/prod/execution', payload);
+    let res = await axios.post('https://hyot4kwofk.execute-api.us-east-1.amazonaws.com/prod/execution', payload);
     let data = res.data;
     console.log(data);
     setResponse(data);
