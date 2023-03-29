@@ -10,7 +10,7 @@
 
 <img src='assets/Lusk.png'/>
 
-## Serverless Architecture orchestration Interface for AWS
+## Serverless Architecture Management Interface for AWS
 
 </div>
 
