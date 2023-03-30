@@ -37,3 +37,13 @@ variable "token" {
   type    = string
   default = "None"
 }
+
+variable "name_table" {
+  type    = string
+  default = "Lusk_Table"
+}
+
+variable "attach_policy" {
+  type   = bool
+  default = false
+}

@@ -8,6 +8,7 @@ module "lambda" {
   filename     = var.filename
   handler = var.handler
   language = var.language
+  attach_policy = var.attach_policy
 }
 
 module "amplify" {
@@ -15,6 +16,11 @@ module "amplify" {
   url_repository = var.url_repository
   app_name = var.app_name
   token = var.token
+}
+
+module "dynamodb" {
+  source = "./dynamodb"
+  name_table = var.name_table
 }
 
 output "my_lambda_api_endpoint" {

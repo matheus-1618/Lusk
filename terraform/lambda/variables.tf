@@ -17,3 +17,7 @@ variable "language" {
   type    = string
   default = "python3.8"
 }
+
+variable "attach_policy" {
+  default = false
+}

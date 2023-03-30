@@ -7,7 +7,7 @@ resource "aws_lambda_function" "lambda_function" {
   runtime      =  var.language
 }
 
-#IAM roles to execute Lambda
+#IAM  basic roles to execute Lambda
 resource "aws_iam_role" "lambda_execution" {
   name = "lambda_lusk_execution"
   assume_role_policy = jsonencode({
@@ -24,9 +24,35 @@ resource "aws_iam_role" "lambda_execution" {
   })
 }
 
+resource "aws_iam_policy" "lambda_dynamodb_policy" {
+  name = "lambda_dynamodb_policy"
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "dynamodb:Scan",
+          "dynamodb:GetItem",
+          "dynamodb:PutItem",
+          "dynamodb:DeleteItem",
+          "dynamodb:UpdateItem"
+        ]
+       Resource = "arn:aws:dynamodb:*:*:table/*"
+      }
+    ]
+  })
+}
+
 resource "aws_iam_role_policy_attachment" "lambda_execution_policy_attachment" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
   role       = aws_iam_role.lambda_execution.name
+}
+
+resource "aws_iam_role_policy_attachment" "lambda_dynamodb_policy_attachment" {
+  count = var.attach_policy ? 1 : 0
+  policy_arn = aws_iam_policy.lambda_dynamodb_policy.arn
+  role   = aws_iam_role.lambda_execution.name
 }
 
 #Permission to allow API Gateway execute Lambda fucntion

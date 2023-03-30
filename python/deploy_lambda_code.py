@@ -18,7 +18,7 @@ os.chdir('../lambda_functions/')
 os.system(f"zip {function_name}.zip {function_name}.py")
 
 os.chdir('../terraform/')
-os.system(f'''terraform apply -target=module.lambda -var="function_name={function_name}" -var="filename=../lambda_functions/{function_name}.zip" -var="handler={function_name}.lambda_handler" -auto-approve''')
+os.system(f'''terraform apply -target=module.lambda -var="attach_policy=true" -var="function_name={function_name}" -var="filename=../lambda_functions/{function_name}.zip" -var="handler={function_name}.lambda_handler" -auto-approve''')
 
 os.chdir('../lambda_functions/')
 os.system(f"rm {function_name}.zip")
