@@ -18,6 +18,7 @@ os.chdir('../lambda_functions/')
 os.system(f"zip {function_name}.zip {function_name}.py")
 
 os.chdir('../terraform/')
+os.system('terraform init')
 os.system(f'''terraform apply -target=module.lambda -var="attach_policy=true" -var="function_name={function_name}" -var="filename=../lambda_functions/{function_name}.zip" -var="handler={function_name}.lambda_handler" -auto-approve''')
 
 os.chdir('../lambda_functions/')
@@ -31,7 +32,7 @@ output = subprocess.check_output(["terraform", "output", "my_lambda_api_endpoint
 output_str = output.decode("utf-8")
 
 # Imprime a saída
-myobj = {'somekey': 'somevalue'}
+myobj = {'id': 'somevalue', 'name':'Matheus'}
 
 x = requests.post(output_str.split('"')[1]+'/execution', json = myobj)
 
