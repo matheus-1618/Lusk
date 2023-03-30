@@ -1,20 +1,25 @@
 import boto3
 import json
 
-dynamodb = boto3.client('dynamodb')
 
 # Função Lambda que insere um novo item na tabela
 def lambda_handler(event, context):
+    client = boto3.client('dynamodb')
+    dynamodb = boto3.resource('dynamodb')
 
     # Obtém o corpo da requisição
+    print(event)
     body = json.loads(event['body'])
+    print(body)
 
-    response = dynamodb.list_tables()
+    response = client.list_tables()
     table_name = response['TableNames'][0]
+
+    table = dynamodb.Table(table_name)
 
 
     # Insere o novo item na tabela
-    response = dynamodb.put_item(
+    response = table.put_item(
         Item={
             'id': body['id'],
             'name': body['name']

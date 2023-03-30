@@ -14,16 +14,16 @@ for dir, subfolders, files in os.walk(os.path.abspath(lambda_folder)):
 
 number_name = int(input('Write the number of the function which you want to deploy: '))
 function_name = lambda_functions_names[number_name-1]
+print(function_name)
 os.chdir('../lambda_functions/')
 os.system(f"zip {function_name}.zip {function_name}.py")
 
 os.chdir('../terraform/')
 os.system('terraform init')
-os.system(f'''terraform apply -target=module.lambda -var="attach_policy=true" -var="function_name={function_name}" -var="filename=../lambda_functions/{function_name}.zip" -var="handler={function_name}.lambda_handler" -auto-approve''')
+os.system(f'''terraform apply -target=module.lambda -var="language=python3.8" -var="attach_policy=true" -var="function_name={function_name}" -var="filename=../lambda_functions/{function_name}.zip" -var="handler={function_name}.lambda_handler" -auto-approve''')
 
 os.chdir('../lambda_functions/')
 os.system(f"rm {function_name}.zip")
-
 
 # Executa o comando `terraform apply` e captura a saída
 output = subprocess.check_output(["terraform", "output", "my_lambda_api_endpoint"], cwd=os.getcwd().split('/lambda_functions')[0]+'/terraform')
@@ -32,7 +32,7 @@ output = subprocess.check_output(["terraform", "output", "my_lambda_api_endpoint
 output_str = output.decode("utf-8")
 
 # Imprime a saída
-myobj = {'id': 'somevalue', 'name':'Matheus'}
+myobj = {'id': '35', 'name':'Matheus'}
 
 x = requests.post(output_str.split('"')[1]+'/execution', json = myobj)
 

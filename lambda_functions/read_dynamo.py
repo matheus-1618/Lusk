@@ -1,14 +1,16 @@
 import boto3
 import json
 
-dynamodb = boto3.resource('dynamodb')
+
 
 
 
 # Função Lambda que retorna todos os itens da tabela
-def lambda_handler_get(event, context):
+def lambda_handler(event, context):
+    client = boto3.client('dynamodb')
+    dynamodb = boto3.resource('dynamodb')
     
-    response = dynamodb.list_tables()
+    response = client.list_tables()
     table_name = response['TableNames'][0]
     # Define a tabela do DynamoDB
     table = dynamodb.Table(table_name)
@@ -26,6 +28,6 @@ def lambda_handler_get(event, context):
             "Access-Control-Allow-Credentials" : 'true',
             "Access-Control-Allow-Origin" : "*",
             "X-Requested-With" : "*"
-        },
+        }, 
         'body': json.dumps(response['Items'])
     }
