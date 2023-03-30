@@ -4,11 +4,7 @@ provider "aws" {
 
 module "lambda" {
   source = "./lambda"
-  function_name = var.function_name
-  filename     = var.filename
-  handler = var.handler
-  language = var.language
-  attach_policy = var.attach_policy
+  functions = var.functions
 }
 
 module "amplify" {

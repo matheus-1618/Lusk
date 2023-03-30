@@ -1,3 +1,13 @@
+variable "functions" {
+  type = list(object({
+    name        = string
+    filename    = string
+    handler     = string
+    language    = string
+    attach_role = bool
+  }))
+}
+
 variable "function_name" {
   type    = string
   default = "my_lambda_function"

@@ -5,13 +5,28 @@ import axios from 'axios';
 
 function App() {
   const [response, setResponse] = useState(null);
+  const [values, setValues] = useState(null);
+  const [inputValue, setInputValue] = useState("");
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  }
+  
 
   async function doPostRequest() {
-    let payload = { name: 'John Doe', occupation: 'gardener' };
-    let res = await axios.post('https://hyot4kwofk.execute-api.us-east-1.amazonaws.com/prod/execution', payload);
+    let payload = { 'id':Math.floor(Math.random() * 10000).toString(), name: inputValue, occupation: 'gardener' };
+    let res = await axios.post('https://7luocwuahd.execute-api.us-east-1.amazonaws.com/prod/execution', payload);
     let data = res.data;
     console.log(data);
     setResponse(data);
+};
+
+async function doGetRequest() {
+  let payload = {};
+  let res = await axios.post('https://r523hx2bg1.execute-api.us-east-1.amazonaws.com/prod/execution', payload);
+  let data = res.data;
+  console.log(data);
+  setValues(data);
 };
 
 
@@ -19,8 +34,11 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div>
-          <button onClick={doPostRequest}>Send POST request to Google</button>
+        <input type="text" value={inputValue} onChange={handleInputChange} />
+          <button onClick={doPostRequest}>Send POST request to Dynamo</button>
           {response && <p>Response: {JSON.stringify(response)}</p>} 
+          <button onClick={doGetRequest}>Send GET request to Dynamo</button>
+          {values && <p>Response: {JSON.stringify(values)}</p>} 
         </div>
       </header>
     </div>

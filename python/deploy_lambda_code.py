@@ -2,6 +2,7 @@ import shutil
 import os 
 import subprocess
 import requests
+import json
 
 
 lambda_functions_names = []
@@ -18,9 +19,28 @@ print(function_name)
 os.chdir('../lambda_functions/')
 os.system(f"zip {function_name}.zip {function_name}.py")
 
+os.chdir('../python/')
+with open('variables.json', 'r') as f:
+    data = json.load(f)
+
+# Adicionar a nova função
+new_function = {
+  "name": function_name,
+  "filename": f"../lambda_functions/{function_name}.zip",
+  "handler": f"{function_name}.lambda_handler",
+  "language": "python3.8",
+  "attach_role": True
+}
+
+data['functions'].append(new_function)
+
+# Salvar o arquivo JSON modificado
+with open('variables.json', 'w') as f:
+    json.dump(data, f, indent=2)
+
 os.chdir('../terraform/')
 os.system('terraform init')
-os.system(f'''terraform apply -target=module.lambda -var="language=python3.8" -var="attach_policy=true" -var="function_name={function_name}" -var="filename=../lambda_functions/{function_name}.zip" -var="handler={function_name}.lambda_handler" -auto-approve''')
+os.system(f'''terraform apply -target=module.lambda  -var-file=../python/variables.json -auto-approve''')
 
 os.chdir('../lambda_functions/')
 os.system(f"rm {function_name}.zip")

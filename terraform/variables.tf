@@ -3,24 +3,16 @@ variable "url_repository" {
   default = "www.google.com"
 }
 
-variable "function_name" {
-  type    = string
-  default = "my_lambda_function"
-}
+variable "functions" {
+  type = list(object({
+    name        = string
+    filename    = string
+    handler     = string
+    language    = string
+    attach_role = bool
+  }))
 
-variable "filename" {
-  type    = string
-  default = "lambda_function.zip"
-}
-
-variable "handler" {
-  type    = string
-  default = "lambda.handler"
-}
-
-variable "language" {
-  type    = string
-  default = "python3.8"
+  default = []
 }
 
 variable "app_name" {
