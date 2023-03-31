@@ -39,7 +39,8 @@ repo_local.index.add('src/')
 repo_local.index.add('.gitignore')
 repo_local.index.add('package-lock.json')
 repo_local.index.add('package.json')
-repo_local.index.commit('Lusk Initilize Repository')
+repo_local.index.add('README.md')
+repo_local.index.commit('Lusk initialized Frontend interface repository')
 
 # Configura o repositório remoto
 remote = repo_local.create_remote('origin', url=repo.clone_url)
