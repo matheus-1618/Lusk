@@ -1,4 +1,4 @@
-<div align="center" style="max-width:28rem;">
+<div align="center" >
 
 
 ![AWS](https://img.shields.io/badge/Amazon_AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)
@@ -8,7 +8,7 @@
 ![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
 
 
-<img src='assets/Lusk.png'/>
+<img src='assets/Lusk.png' style="width:25rem;"/>
 
 ## Serverless Architecture Management Interface for AWS
 
