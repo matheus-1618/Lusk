@@ -3,6 +3,16 @@ variable "url_repository" {
   default = "www.google.com"
 }
 
+variable "access_key" {
+  type = string
+  default = "none"
+}
+
+variable "secret_key" {
+  type = string
+  default = "none"
+}
+
 variable "functions" {
   type = list(object({
     name        = string

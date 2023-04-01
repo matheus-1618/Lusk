@@ -9,6 +9,8 @@
 *.tfstate
 *.tfstate.*
 
+#env files
+.env
 # Crash log files
 crash.log
 crash.*.log

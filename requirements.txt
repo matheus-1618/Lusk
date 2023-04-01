@@ -2,3 +2,4 @@ PyGithub
 GitPython
 boto3
 pyfiglet
+python-dotenv

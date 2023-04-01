@@ -8,8 +8,11 @@ import boto3
 import requests
 
 class Lusk:
-    def __init__(self):
+    def __init__(self,aws_key_id,aws_secret_id,github_token):
         self.created_app = False
+        self.aws_key_id = aws_key_id
+        self.aws_secret_id = aws_secret_id
+        self.github_token = github_token
     
     def create_dynamo_db_table(self,name_table = None) -> None:
         if name_table == None:
@@ -17,16 +20,17 @@ class Lusk:
         print(f"[LUSK] Creating Dynamo Table: {name_table}")
         os.chdir('../terraform/')
         os.system('terraform init')
-        os.system(f'''terraform apply -target=module.dynamodb -var="name_table={name_table}" -auto-approve''')
+        os.system(f'''terraform apply -target=module.dynamodb -var="access_key={self.aws_key_id}" -var="secret_key={self.aws_secret_id}" -var="name_table={name_table}" -auto-approve''')
+        os.chdir('../python/')
 
-    def create_amplify_app(self, access_token,repo_name = None):
+    def create_amplify_app(self,repo_name = None):
         print("[LUSK] Creating new App")
         os.chdir('../webapp')
         os.system('rm -rf .git')
         os.chdir('../python')
         print("[LUSK] Erasing data from possible last repository")
 
-        g = Github(access_token)
+        g = Github(self.github_token)
 
         code_directory = os.getcwd().split('/python')[0]+'/webapp'
 
@@ -59,7 +63,7 @@ class Lusk:
         print("[LUSK] Executing Terraform")
         os.chdir('../terraform/')
         os.system('terraform init')
-        os.system(f'''terraform apply -target=module.amplify -var="url_repository={repo_url.split('.git')[0]}" -var="app_name={repo_name}" -var="token={access_token}" -auto-approve''')
+        os.system(f'''terraform apply -target=module.amplify -var="access_key={self.aws_key_id}" -var="secret_key={self.aws_secret_id}" -var="url_repository={repo_url.split('.git')[0]}" -var="app_name={repo_name}" -var="token={self.github_token}" -auto-approve''')
 
         print("[LUSK] Building App on Amplify Hosting")
         output = subprocess.check_output(["terraform", "output", "amplify_url"], cwd=os.getcwd())
@@ -75,6 +79,8 @@ class Lusk:
             appId=output_str.split('"')[1])
         print("[LUSK] WebApp deployed with sucess!")
         print(f"[LUSK] Applcation URL: main.{response['app']['defaultDomain']}")
+        os.chdir('../python/')
+        self.created_app = True
         
     def deploy_lambda_function(self):
         lambda_functions_names = []
@@ -111,7 +117,7 @@ class Lusk:
 
         os.chdir('../terraform/')
         os.system('terraform init')
-        os.system(f'''terraform apply -target=module.lambda  -var-file=../python/variables.json -auto-approve''')
+        os.system(f'''terraform apply -target=module.lambda -var="access_key={self.aws_key_id}" -var="secret_key={self.aws_secret_id}" -var-file=../python/variables.json -auto-approve''')
 
         os.chdir('../lambda_functions/')
         os.system(f"rm {function_name}.zip")
@@ -124,10 +130,10 @@ class Lusk:
 
         # Imprime a saída
         myobj = {'id': '35', 'name':'Matheus'}
-
         x = requests.post(output_str.split('"')[1]+'/execution', json = myobj)
-
         print(x.text)
+        os.chdir('../python/')
+
     def destroy_resources(self):
         print("[LUSK] Destroyng resources")
         with open('variables.json', 'r') as f:
@@ -137,11 +143,11 @@ class Lusk:
             json.dump(data, f, indent=2)
 
         os.chdir('../terraform/')
-        os.system('terraform destroy -var-file=../python/variables.json -auto-approve')
+        os.system(f'terraform destroy -var="access_key={self.aws_key_id}" -var="secret_key={self.aws_secret_id}" -var-file=../python/variables.json -auto-approve')
+        os.chdir('../python/')
         return True
     
     def update_app(self) ->bool:
-        
         if self.created_app:
             print("[LUSK] Updating WebApp")
             repo = git.Repo('../webapp')
