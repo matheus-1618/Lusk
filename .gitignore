@@ -6,6 +6,7 @@
 **/.terraform/*
 **__pycache__/
 # .tfstate files
+*.terraform
 *.tfstate
 *.tfstate.*
 
