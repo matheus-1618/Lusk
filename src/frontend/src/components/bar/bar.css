@@ -1,0 +1,84 @@
+.bar{
+    position: fixed;
+    width: 100%;
+    background-color: white;
+    top: 0;
+    z-index: 100;
+    background-color: rgb(2, 65, 124);
+    
+}
+.bar-itens{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    flex-direction: row;
+    margin: 5px;
+}
+
+.logos{
+    width: 12%;
+    height: 12%;
+    transition-duration: 0.4s;
+}
+
+.logos:hover{
+    transform: scale(1.01);
+}
+
+.barFont{
+    font-size: 1rem;
+    margin-left: 5px;
+    background-image: linear-gradient(to bottom, rgb(0, 66, 247), rgb(6, 203, 238), rgb(255, 255, 255));
+    color: black;
+    background-clip: text;
+    -webkit-background-clip: text;
+    transition-duration: 0.4s;
+    -webkit-text-fill-color: transparent;
+}
+
+.barFont:hover{
+    transform: scale(1.01);
+}
+
+.user {
+    color:rgb(6, 203, 238);
+    position: fixed;
+    right: 80px;
+    top: 6px;
+    text-decoration: none;
+    font-size: 8px;
+    transition-duration: 0.4s;
+    display: flex;
+    flex-direction: row;
+}
+
+.userButton{
+    color:rgb(6, 203, 238);
+    font-size: 30px;
+    position: fixed;
+    right: 30px;
+    top: 10px;
+    border: none;
+    background: none;
+    transition-duration: 0.4s;
+ 
+}
+
+.userButton:hover{
+    color:white;
+    transform: scale(1.01);
+}
+
+.return {
+    color:rgb(6, 203, 238);
+    position: fixed;
+    left: 10px;
+    text-decoration: none;
+    transition-duration: 0.4s;
+}
+.return:hover{
+    transform: scale(1.05);
+}
+.return h1{
+    font-size: 1rem;
+}

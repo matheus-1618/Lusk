@@ -3,3 +3,5 @@ GitPython
 boto3
 pyfiglet
 python-dotenv
+fastapi
+uvicorn[standard]

@@ -1,0 +1,108 @@
+.Index {
+    text-align: center;
+  }
+  
+  .Index-logo {
+    height: 40vmin;
+    pointer-events: none;
+  }
+
+  .anycompany-login{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    transition-duration: 0.9s;
+  }
+
+  [data-amplify-authenticator] [data-amplify-router] {
+    background-color: var(--amplify-components-authenticator-router-background-color);
+    box-shadow: var(--amplify-components-authenticator-router-box-shadow);
+    border-color: var(--amplify-components-authenticator-router-border-color);
+    border-width: var(--amplify-components-authenticator-router-border-width);
+    border-style: var(--amplify-components-authenticator-router-border-style);
+  }
+
+  .anycompany-login:hover{
+    transform: scale(1.02);
+  }
+  .logo-login{
+    width: 10%;
+    height: 10%;
+  }
+
+  .loginFont{
+    margin-left: 5px;
+    background-image: linear-gradient(to bottom, rgb(0, 66, 247), rgb(6, 203, 238), rgb(255, 255, 255));
+    color: black;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+  .amplify-button[data-variation='primary'] {
+    background: linear-gradient(
+      to bottom,
+      rgb(2, 65, 124), rgb(5, 143, 197)
+    );
+  }
+
+  
+  .Index-header {
+    background-image: linear-gradient(rgb(2, 65, 124), rgb(9, 227, 238));
+    /* background-color: #282c34; */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+
+.options-container{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.options-item{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    margin:25px;
+    border-radius: 20px;
+    /* min-width: 24rem; */
+    min-width: 30%;
+    background-color: transparent;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.1rem;
+    color: rgb(16, 16, 16);
+    transition-duration: 0.4s;
+    text-decoration: none;
+}
+
+.options-item:hover{
+    display: flex;
+    transform: scale(1.03);
+    color:rgb(6, 81, 221);
+}
+
+.options-img{
+  display: flex;
+  margin-top: 10px;
+  border-radius: 50px;
+  width: 10rem;
+  height: 10rem;
+}
+
+.input{
+    opacity: 0.0; 
+    position: absolute; top: 0; left: 0; bottom: 0; right: 0; 
+}
+
+
