@@ -11,12 +11,10 @@ import Bar from "../bar/bar";
 
 
 export default function Transcripts(props) {
-    {
         return (
         <div className="Transcript">
           <header className="Transcript-header">
           <Bar home={false}/> 
           </header>
       </div>)
-    }
  }
