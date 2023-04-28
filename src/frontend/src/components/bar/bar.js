@@ -16,10 +16,6 @@ export default function Bar(props) {
         {
         (<div className="bar-itens">
             <img className="logos" src={Imagem}/>
-            <div className="user">
-                <h1> <FaUserCircle/> {user}</h1>
-            </div>
-            <button className="userButton" onClick={signOut}><BiLogInCircle/></button>
         </div>) 
         }
     </div>
