@@ -18,13 +18,12 @@ function Login() {
         <div className="login-container">
           <form className="login-form" onSubmit={handleSubmit}>
             <h1 className="login-title">Credentials</h1>
-
             <div className="form-div">
               <h1 className="form-details">AWS ACCESS KEY</h1>
               <input
                 className="login-input"
                 type="password"
-                placeholder="E-mail"
+                placeholder="AWS ACCESS KEY"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -36,7 +35,7 @@ function Login() {
               <input
                 className="login-input"
                 type="password"
-                placeholder="Senha"
+                placeholder="AWS SECRET KEY"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -48,14 +47,14 @@ function Login() {
               <input
                 className="login-input"
                 type="password"
-                placeholder="Senha"
+                placeholder="GITHUB TOKEN"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
             </div>
             <button className="login-button" type="submit">
-              Entrar
+              SEND
             </button>
           </form>
         </div>

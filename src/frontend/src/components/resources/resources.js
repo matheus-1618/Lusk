@@ -40,6 +40,7 @@ return (
             <img className="resources-img" src="https://seeklogo.com/images/A/aws-api-gateway-logo-368082D845-seeklogo.com.png"></img>
             <h1 >API Gateway</h1>
         </Link>
+        
      </div>
     </header>
   </div>

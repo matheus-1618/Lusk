@@ -8,6 +8,7 @@
   }
   
   .Index-header {
+    display:flex;
     background-image: linear-gradient(rgb(2, 65, 124), rgb(9, 227, 238));
     min-height: 100vh;
     flex-direction: column;
@@ -29,7 +30,7 @@
     width: 100%;
     align-items: center;
     justify-content: center;
-    margin-top: 6%;
+    /* margin-top: 6%; */
     
 }
 
