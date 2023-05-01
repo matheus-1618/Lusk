@@ -1,0 +1,16 @@
+{
+  "functions": [
+    {
+      "name": "read_dynamo",
+      "filename": "lambda/read_dynamo.zip",
+      "handler": "read_dynamo.lambda_handler",
+      "language": "python3.8"
+    },
+    {
+      "name": "insert_in_dynamo",
+      "filename": "lambda/insert_in_dynamo.zip",
+      "handler": "insert_in_dynamo.lambda_handler",
+      "language": "python3.8"
+    }
+  ]
+}
