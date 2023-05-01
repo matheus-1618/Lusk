@@ -43,7 +43,7 @@ if [ -d "$full_path" ]; then
     echo "Aplicação pronta para rodar!"
 else
     echo "Instalando dependências Lusk"
-    cd "$full_path"
+    cd "$CURRENT_DIR/src/frontend/"
     npm i --force 
     cd "$CURRENT_DIR"
 fi
