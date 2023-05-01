@@ -17,7 +17,7 @@ if not load_dotenv(override=True):
     aws_acess_key = input("[LUSK] AWS ACCESS KEY ID: ")
     aws_secret_key = input("[LUSK] AWS_SECRET_KEY: ")
     github_key = input("[LUSK] GITHUB ACCESS TOKEN: ")
-    with open('../.env', 'w') as f:
+    with open('../../.env', 'w') as f:
         f.write(f'AWS_ACCESS_KEY_ID={aws_acess_key}\n')
         f.write(f'AWS_SECRET_ACCESS_KEY={aws_secret_key}\n')
         f.write(f'GITHUB_TOKEN={github_key}')

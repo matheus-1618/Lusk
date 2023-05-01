@@ -6,7 +6,7 @@ if [ -d "$full_path" ]; then
     echo "Iniciando Backend"
     cd "$CURRENT_DIR/$MED_PATH"
     source venv/activate/bin
-    uvicorn server:app --reload > /dev/null &
+    uvicorn server:app --reload --port 5200 > /dev/null &
     BACKEND_PID=$!
     cd "$CURRENT_DIR"
 else
