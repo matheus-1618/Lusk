@@ -41,6 +41,7 @@ if ! command -v python3 &> /dev/null; then
     echo "Python e/ou Python 3 não estão instalados, instalando Python 3..."
     sudo apt-get update
     sudo apt-get install python3
+    python3 -m pip install virtualenv
 else
     echo "Python e Python 3 já estão instalados!"
 fi
