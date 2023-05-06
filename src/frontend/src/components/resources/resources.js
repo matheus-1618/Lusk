@@ -40,6 +40,14 @@ return (
             <img className="resources-img" src="https://seeklogo.com/images/A/aws-api-gateway-logo-368082D845-seeklogo.com.png"></img>
             <h1 >API Gateway</h1>
         </Link>
+        <Link to="/bot" className="resources-item">
+            <img className="resources-img" src="https://lumigo.io/wp-content/uploads/2020/07/Amazon-Aurora@4x.png"></img>
+            <h1 >Amazon Aurora</h1>
+        </Link>
+        <Link to="/bot" className="resources-item">
+            <img className="resources-img" src="https://res.cloudinary.com/hy4kyit2a/f_auto,fl_lossy,q_70/learn/modules/aws-cloud-security/learn-about-aws-security-services/images/8d03a75da1004ae7489a19260cb70889_84-e-710-e-4-cd-3-b-4301-9744-07-fcc-43-b-059-a.png"></img>
+            <h1 >AWS WAF</h1>
+        </Link>
         
      </div>
     </header>

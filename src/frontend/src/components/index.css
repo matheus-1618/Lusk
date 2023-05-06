@@ -8,30 +8,28 @@
   }
   
   .Index-header {
+    position: relative;
     display:flex;
     background-image: linear-gradient(rgb(2, 65, 124), rgb(9, 227, 238));
     min-height: 100vh;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    /* justify-content: space-evenly; */
     font-size: calc(10px + 2vmin);
     color: white;
     height: auto;
     margin: 0 auto;
-    padding: 1px;
-    position: relative;
   }
 
 .options-container{
-  position: relative;
+    position: relative;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     width: 100%;
     align-items: center;
     justify-content: center;
-    /* margin-top: 6%; */
-    
+    margin-top: 5%;
 }
 
 .options-item{
@@ -43,7 +41,7 @@
     margin: 10px;
     border-radius: 30px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     transition-duration: 0.4s;
     text-decoration: none;
 }
@@ -57,8 +55,8 @@
 .options-img{
   display: flex;
   margin-top: 10px;
-  width: 9rem;
-  height: 9rem;
+  width: 12rem;
+  height: 12rem;
   filter: saturate(500%) contrast(800%) brightness(500%) 
       invert(100%) sepia(50%) hue-rotate(120deg); 
 }
