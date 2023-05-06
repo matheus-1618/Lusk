@@ -1,14 +1,30 @@
 import React, { useEffect,useState } from "react";
 import "./login.css";
 import Bar from "../bar/bar";
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [accesskey, setAccesskey] = useState("");
+  const [secretkey, setSecretKey] = useState("");
+  const [token, setToken] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
   };
+
+  async function sendCredentials() {
+    let payload = {
+      "aws_access_key": accesskey,
+      "aws_secret_key": secretkey,
+      "github_key": token
+    };
+    let res = await axios.post('http://localhost:5200/credentials', payload);
+    let data = res.data;
+    console.log(data);
+    navigate("/");
+};
 
   return (
     <div className="Login">
@@ -23,8 +39,8 @@ function Login() {
                 className="login-input"
                 type="password"
                 placeholder="AWS ACCESS KEY"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={accesskey}
+                onChange={(e) => setAccesskey(e.target.value)}
                 required
               />
             </div>
@@ -35,8 +51,8 @@ function Login() {
                 className="login-input"
                 type="password"
                 placeholder="AWS SECRET KEY"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={secretkey}
+                onChange={(e) => setSecretKey(e.target.value)}
                 required
               />
             </div>
@@ -47,12 +63,12 @@ function Login() {
                 className="login-input"
                 type="password"
                 placeholder="GITHUB TOKEN"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={token}
+                onChange={(e) => setToken(e.target.value)}
                 required
               />
             </div>
-            <button className="login-button" type="submit">
+            <button className="login-button" type="submit" onClick={sendCredentials}>
               SEND
             </button>
           </form>

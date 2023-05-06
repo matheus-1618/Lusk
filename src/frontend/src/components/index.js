@@ -1,7 +1,8 @@
 import React from "react";
 import "./index.css";
+import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import Bar from "./bar/bar";
 import Infra from "../assets/manage.png"
 import List from "../assets/list.png"
@@ -13,15 +14,38 @@ import Docs from "../assets/docs.png"
 
 export default function Home(props) {
     const ref = useRef(null);
-    const [progress, setProgress] = useState(null);
-    const [usuario, setUsuario] = useState(null);
+    const navigate = useNavigate();
+    const [showModal, setShowModal] = useState(false);
+
+    const handleModal = () => {
+      setShowModal(!showModal);
+    };
+
+    async function destroyResources() {
+        setShowModal(!showModal);
+        let res = await axios.get('http://localhost:5200/destroy');
+        let data = res.data;
+        console.log(data);
+        navigate("/");
+    };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            let res = await axios.get('http://localhost:5200/credentials');
+            let data = res.data;
+            if (data == false){
+                navigate("/login");
+            }
+        }
+        fetchData().catch(console.error);
+    }, []);
 
     useEffect(() => {
         if (navigator.platform === 'Win32'){
             var images = document.getElementsByClassName("options-img");
             for (var i = 0; i < images.length; i++) {
-                images[i].style.width="80px";
-                images[i].style.height="80px";
+                images[i].style.width="100px";
+                images[i].style.height="100px";
             }
         }
       }, []);
@@ -30,8 +54,21 @@ return (
     <div className="Index">
     <header className="Index-header">
         <Bar home={true} user="ok"/> 
+    
      <div className="options-container">
-        <Link to="/resources" className="options-item">
+     {showModal && (
+                <div className="modal">
+                <div className="modal-content">
+                  <h2>Destroy Resources</h2>
+                  <p>Are you sure you want to destroy the resources?</p>
+                  <div className="modal-buttons">
+                    <button className="buttons" onClick={handleModal}>Cancel</button>
+                    <button className="buttons" onClick={destroyResources}>Destroy</button>
+                  </div>
+                </div>
+              </div>
+      )}
+        <Link to="/infra" className="options-item">
             <img className="options-img" src={Infra}></img>
             <h1 className="options-font">Manage Infrastructure</h1>
           </Link>
@@ -39,7 +76,7 @@ return (
             <img className="options-img" src={List}></img>
             <h1 className="options-font">List Resources</h1>
         </Link>
-        <Link to="/" className="options-item">
+        <Link to="/" className="options-item" onClick={handleModal}>
             <img className="options-img" src={Destroy}></img>
             <h1 className="options-font">Destroy Resources</h1>
         </Link>

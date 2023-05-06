@@ -1,13 +1,13 @@
-.Index {
+.Infra {
     text-align: center;
   }
 
-  .Index-logo {
+  .Infra-logo {
     height: 40vmin;
     pointer-events: none;
   }
   
-  .Index-header {
+  .Infra-header {
     position: relative;
     display:flex;
     background-image: linear-gradient(rgb(2, 65, 124), rgb(9, 227, 238));
@@ -21,59 +21,7 @@
     margin: 0 auto;
   }
 
-  .modal {
-    position: fixed;
-    z-index: 100;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .modal-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-image: linear-gradient(rgb(2, 65, 124), rgb(9, 227, 238));
-    padding: 20px;
-    border-radius: 40px;
-  }
-  
-  .modal-content h2 {
-    margin-top: 0;
-  }
-  
-  .modal-buttons {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    text-decoration: none; 
-  }
-  
-  .modal-buttons button {
-    display: flex;
-    margin:10px;
-    color: rgb(0, 0, 0);
-    border: none;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background-image: linear-gradient(rgb(234, 234, 234), rgb(0, 137, 144));
-    border-radius: 5px;
-    font-size: 2rem;
-    outline: none; 
-    transition-duration: 0.4s;
-  }
-
-  .modal-buttons button:hover{
-    transform: scale(1.03);
-    color:rgb(7, 88, 227);
-}
-  
-
-.options-container{
+.infra-container{
     position: relative;
     display: flex;
     flex-direction: row;
@@ -84,7 +32,7 @@
     margin-top: 5%;
 }
 
-.options-item{
+.infra-item{
     display: flex;
     flex-direction:column;
     align-items: center;
@@ -93,27 +41,27 @@
     margin: 10px;
     border-radius: 30px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 0.9rem;
+    font-size: 2rem;
     transition-duration: 0.4s;
     text-decoration: none;
 }
 
-.options-item:hover{
+.infra-item:hover{
     display: flex;
     transform: scale(1.03);
     color:rgb(6, 81, 221);
 }
 
-.options-img{
+.infra-img{
   display: flex;
   margin-top: 10px;
-  width: 12rem;
-  height: 12rem;
+  width: 15rem;
+  height: 15rem;
   filter: saturate(500%) contrast(800%) brightness(500%) 
       invert(100%) sepia(50%) hue-rotate(120deg); 
 }
 
-.options-font{
+.infra-font{
   color: white;
 }
 

@@ -4,6 +4,6 @@ from typing import Optional, List
 
 #BaseModel de request
 class Credentials(BaseModel):
-    aws_acess_key: str  = Field(default = "", max_length=300, example="LKIMX45XKILIA4VG7MPI")
+    aws_access_key: str  = Field(default = "", max_length=300, example="LKIMX45XKILIA4VG7MPI")
     aws_secret_key: str  = Field(default = "", max_length=300, example="7jfndXSF4+AjfndXSF4+0jfndXSF4")
     github_key: str  = Field(default = "", max_length=300, example="ghp_7jfndXSF47jfndXSF47jfndXSF4")

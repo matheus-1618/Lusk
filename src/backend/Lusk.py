@@ -82,17 +82,18 @@ class Lusk:
         os.chdir('../src/backend/')
         self.created_app = True
         
-    def deploy_lambda_function(self):
+    def deploy_lambda_function(self, function_number:int = None):
         lambda_functions_names = []
         lambda_folder = os.getcwd().split('/src/backend')[0] +'/lambda_functions/'
         for dir, subfolders, files in os.walk(os.path.abspath(lambda_folder)):
             for i,file in enumerate(files):
                 print(f'{i+1} - ' + os.path.join(dir,file).split('/lambda_functions/')[-1])
                 lambda_functions_names.append(os.path.join(dir,file).split('/lambda_functions/')[-1].split('.py')[0])
-
-        number_name = int(input('Write the number of the function which you want to deploy: '))
-        function_name = lambda_functions_names[number_name-1]
-        print(function_name)
+        if function_number is None:
+            number_name = int(input('Write the number of the function which you want to deploy: '))
+            function_name = lambda_functions_names[number_name-1]
+        else:
+            function_name = lambda_functions_names[function_number]
         os.chdir('../../lambda_functions/')
         os.system(f"zip {function_name}.zip {function_name}.py")
 
@@ -141,7 +142,6 @@ class Lusk:
         data['functions'] = []
         with open('variables.json', 'w') as f:
             json.dump(data, f, indent=2)
-
         os.chdir('../../terraform/')
         os.system(f'terraform destroy -var="access_key={self.aws_key_id}" -var="secret_key={self.aws_secret_id}" -var-file=../src/backend/variables.json -auto-approve')
         os.chdir('../src/backend/')
