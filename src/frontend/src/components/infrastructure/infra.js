@@ -4,7 +4,8 @@ import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import { Link,useNavigate } from 'react-router-dom';
 import Bar from "../bar/bar";
-import List from "../../assets/list.png"
+import Backend from "../../assets/backend.png"
+import Frontend from "../../assets/frontend.png"
 
 export default function Infra(props) {
     const ref = useRef(null);
@@ -28,11 +29,11 @@ return (
         <Bar home={true} user="ok"/> 
      <div className="infra-container">
         <Link to="/resources" className="infra-item">
-            <img className="infra-img" src="https://static.thenounproject.com/png/4505845-200.png"></img>
+            <img className="infra-img" src={Backend}></img>
             <h1 className="infra-font">Backend</h1>
           </Link>
         <Link to="/resources" className="infra-item">
-            <img className="infra-img" src="https://static.thenounproject.com/png/4834081-200.png"></img>
+            <img className="infra-img" src={Frontend}></img>
             <h1 className="infra-font">Frontend</h1>
         </Link>
      </div>

@@ -122,4 +122,13 @@
     position: absolute; top: 0; left: 0; bottom: 0; right: 0; 
 }
 
-
+.destroy{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.spin{
+  width: 12rem;
+  height: 12rem;
+}

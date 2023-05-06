@@ -5,6 +5,7 @@ from basemodels import *
 from typing import Annotated
 from Lusk import Lusk
 from dotenv import load_dotenv
+import json
 import os
 
 
@@ -45,5 +46,16 @@ async def destroy_resources():
     except:
         return {"response":"error"}
 
+@app.get("/resources",status_code=200)
+async def display_resources():
+    resources = []
+    try:
+        with open('../../terraform/terraform.tfstate', 'r') as f:
+                data = json.load(f)['resources']
+        for resource in data:
+            resources.append(resource['type'])
+        return resources
+    except:
+        raise HTTPException(status_code=404, detail="No resources found")
 
 

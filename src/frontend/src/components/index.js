@@ -10,23 +10,26 @@ import Destroy from "../assets/destroy.png"
 import Credentials from "../assets/credentials.png"
 import AWSlogo from "../assets/aws.webp"
 import Docs from "../assets/docs.png"
+import Gif from "../assets/giphy.webp"
 
 
 export default function Home(props) {
     const ref = useRef(null);
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
+    const [destroy, setDestroy] = useState(false);
 
     const handleModal = () => {
       setShowModal(!showModal);
     };
 
     async function destroyResources() {
-        setShowModal(!showModal);
+        setDestroy(true);
         let res = await axios.get('http://localhost:5200/destroy');
         let data = res.data;
         console.log(data);
-        navigate("/");
+        setShowModal(!showModal);
+        setDestroy(false);
     };
 
     useEffect(() => {
@@ -60,11 +63,22 @@ return (
                 <div className="modal">
                 <div className="modal-content">
                   <h2>Destroy Resources</h2>
+                  {destroy ? 
+                  (<>
+                  <div className="destroy">
+                  <p>Destroying...</p>
+                  <img className="spin" src={Gif}></img>
+                  </div>
+                  </>)
+                  :
+                  (<>
                   <p>Are you sure you want to destroy the resources?</p>
                   <div className="modal-buttons">
                     <button className="buttons" onClick={handleModal}>Cancel</button>
                     <button className="buttons" onClick={destroyResources}>Destroy</button>
                   </div>
+                  </>)}
+                  
                 </div>
               </div>
       )}
