@@ -43,7 +43,7 @@ if [ -d "$full_path" ]; then
     echo "Aplicação pronta para rodar!"
 else
     echo "Instalando dependências Lusk"
-    cd "$full_path"
+    cd "$CURRENT_DIR/src/frontend/"
     npm i --force 
     cd "$CURRENT_DIR"
 fi
@@ -53,6 +53,7 @@ if ! command -v python3 &> /dev/null; then
     echo "Python e/ou Python 3 não estão instalados, instalando Python 3..."
     sudo apt-get update
     sudo apt-get install python3
+    pip install virtualenv
 else
     echo "Python e Python 3 já estão instalados!"
 fi
