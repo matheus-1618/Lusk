@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect,useState } from "react";
 import "./login.css";
 import Bar from "../bar/bar";
 
@@ -8,7 +8,6 @@ function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Adicione aqui a lógica para fazer a autenticação do usuário
   };
 
   return (

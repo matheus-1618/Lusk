@@ -16,6 +16,16 @@ export default function Home(props) {
     const [progress, setProgress] = useState(null);
     const [usuario, setUsuario] = useState(null);
 
+    useEffect(() => {
+        if (navigator.platform === 'Win32'){
+            var images = document.getElementsByClassName("options-img");
+            for (var i = 0; i < images.length; i++) {
+                images[i].style.width="80px";
+                images[i].style.height="80px";
+            }
+        }
+      }, []);
+
 return (
     <div className="Index">
     <header className="Index-header">
