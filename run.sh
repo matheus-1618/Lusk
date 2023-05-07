@@ -3,14 +3,14 @@ MED_PATH="/src/backend"
 DIR_PATH="/src/backend/venv"
 full_path="$CURRENT_DIR/$DIR_PATH"
 if [ -d "$full_path" ]; then
-    echo "Iniciando Backend"
+    echo "Starting Backend"
     cd "$CURRENT_DIR/$MED_PATH"
-    source venv/activate/bin
+    source venv/bin/activate
     uvicorn server:app --reload --port 5200 > /dev/null &
     BACKEND_PID=$!
     cd "$CURRENT_DIR"
 else
-    echo "Dependências não satisfeitas, rode sudo ./install.sh"
+    echo "Dependencies not satisfied, run sudo ./install.sh"
 fi
 
 
@@ -20,19 +20,19 @@ MED_PATH="/src/frontend"
 DIR_PATH="/src/frontend/node_modules"
 full_path="$CURRENT_DIR/$DIR_PATH"
 if [ -d "$full_path" ]; then
-    echo "Iniciando Frontend"
+    echo "Starting Frontend"
     cd "$CURRENT_DIR/$MED_PATH"
     npm start > /dev/null &
     FRONTEND_PID=$!
     cd "$CURRENT_DIR"
 
 else
-    echo "Dependências não satisfeitas, rode sudo ./install.sh"
+    echo "Dependencies not satisfied, run sudo ./install.sh"
 fi
 
 # Aguardando sinal de interrupção (CTRL-C)
 while true; do
-    read -r -p "Pressione CTRL-C para encerrar a aplicação" response
+    read -r -p "Press CTRL-C to close the app" response
 done
 
 # Matando o processo do frontend

@@ -1,6 +1,6 @@
 #instalando Dependências Terraform
 if ! command -v terraform &> /dev/null; then
-    echo "Instalando Terraform"
+    echo "Installing Terraform"
     sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
 
     wget -O- https://apt.releases.hashicorp.com/gpg | \
@@ -19,12 +19,12 @@ if ! command -v terraform &> /dev/null; then
 
     sudo apt-get install terraform
 else
-    echo "O Terraform já está instalado!"
+    echo "O Terraform already installed!"
 fi
 
 #instalando Dependências Node.js
 if ! command -v node &> /dev/null; then
-    echo "Instalando Node.js acima da versão 14"
+    echo "Installing Node.js above version 14"
     CURRENT_DIR=$(pwd)
     cd ~
     curl -sL https://deb.nodesource.com/setup_18.x -o nodesource_setup.sh
@@ -32,7 +32,7 @@ if ! command -v node &> /dev/null; then
     sudo apt install nodejs
     cd "$CURRENT_DIR"
 else
-    echo "O Node já está instalado!"
+    echo "Node.js already installed!"
 fi
 
 #Instalando package da estrutura frontend
@@ -40,9 +40,9 @@ CURRENT_DIR=$(pwd)
 DIR_PATH="/src/frontend/node_modules"
 full_path="$CURRENT_DIR/$DIR_PATH"
 if [ -d "$full_path" ]; then
-    echo "Aplicação pronta para rodar!"
+    echo "App ready to run!"
 else
-    echo "Instalando dependências Lusk"
+    echo "Installing Lusk dependecies"
     cd "$CURRENT_DIR/src/frontend/"
     npm i --force 
     cd "$CURRENT_DIR"
@@ -50,12 +50,12 @@ fi
 
 #Instalando python caso não detectado
 if ! command -v python3 &> /dev/null; then
-    echo "Python e/ou Python 3 não estão instalados, instalando Python 3..."
+    echo "Python e/ou Python 3 are not installed, installing them for you..."
     sudo apt-get update
     sudo apt-get install python3
     pip install virtualenv
 else
-    echo "Python e Python 3 já estão instalados!"
+    echo "Python or Python 3 already installed!"
 fi
 
 #Ativando ambiente virtual para instalação das dependências
@@ -64,14 +64,14 @@ MED_PATH="src/backend"
 DIR_PATH="src/backend/venv"
 full_path="$CURRENT_DIR/$DIR_PATH"
 if [ -d "$full_path" ]; then
-    echo "Ambiente virtual já configurado"
+    echo "Virtual Enviroment already configured"
 else
-    echo "Instalando ambiente virtual"
+    echo "Installing virtual environment"
     cd "$CURRENT_DIR/$MED_PATH"
     python3 -m virtualenv venv
     pip install -r "$CURRENT_DIR"/requirements.txt
     cd "$CURRENT_DIR"
-    echo "Ambiente instalado"
+    echo "Enviroment ready"
 fi
 
 
