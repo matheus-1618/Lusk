@@ -47,8 +47,8 @@ export default function Home(props) {
         if (navigator.platform === 'Win32'){
             var images = document.getElementsByClassName("options-img");
             for (var i = 0; i < images.length; i++) {
-                images[i].style.width="100px";
-                images[i].style.height="100px";
+                images[i].style.width="90px";
+                images[i].style.height="90px";
             }
         }
       }, []);
