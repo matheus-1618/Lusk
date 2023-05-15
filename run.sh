@@ -13,7 +13,6 @@ else
     echo "Dependencies not satisfied, run sudo ./install.sh"
 fi
 
-
 #Iniciando o Frontend em background
 CURRENT_DIR=$(pwd)
 MED_PATH="/src/frontend"

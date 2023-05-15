@@ -5,7 +5,7 @@ import git
 import json
 import subprocess
 import boto3
-import requests
+import os
 
 class Lusk:
     def __init__(self,aws_key_id,aws_secret_id,github_token):
@@ -29,11 +29,10 @@ class Lusk:
         os.system('rm -rf .git')
         os.chdir('../src/backend')
         print("[LUSK] Erasing data from possible last repository")
-
-        g = Github(self.github_token)
+       
+        g = Github(os.getenv('GITHUB_TOKEN'))
 
         code_directory = os.getcwd().split('/src/backend')[0]+'/webapp'
-
 
         if repo_name == None:
             repo_name = input("--> Qual o nome do repositorio desejado? ")
@@ -63,7 +62,7 @@ class Lusk:
         print("[LUSK] Executing Terraform")
         os.chdir('../../terraform/')
         os.system('terraform init')
-        os.system(f'''terraform apply -target=module.amplify -var="access_key={self.aws_key_id}" -var="secret_key={self.aws_secret_id}" -var="url_repository={repo_url.split('.git')[0]}" -var="app_name={repo_name}" -var="token={self.github_token}" -auto-approve''')
+        os.system(f'''terraform apply -target=module.amplify -var="access_key={self.aws_key_id}" -var="secret_key={self.aws_secret_id}" -var="url_repository={repo_url.split('.git')[0]}" -var="app_name={repo_name}" -var="token={os.getenv('GITHUB_TOKEN')}" -auto-approve''')
 
         print("[LUSK] Building App on Amplify Hosting")
         output = subprocess.check_output(["terraform", "output", "amplify_url"], cwd=os.getcwd())
@@ -81,6 +80,7 @@ class Lusk:
         print(f"[LUSK] Applcation URL: main.{response['app']['defaultDomain']}")
         os.chdir('../src/backend/')
         self.created_app = True
+        return f"https://main.{response['app']['defaultDomain']}"
     
     def get_lambdas(self):
         lambda_functions_names = []
@@ -132,13 +132,9 @@ class Lusk:
 
         # Converte a saída em uma string decodificando os bytes usando o formato UTF-8
         output_str = output.decode("utf-8")
-    
-        # Imprime a saída
-        myobj = {'id': '35', 'name':'Matheus'}
-        x = requests.post(output_str.split('"')[1]+'/execution', json = myobj)
-        print(x.text)
         os.chdir('../src/backend/')
-
+        return output_str
+        
     def destroy_resources(self):
         print("[LUSK] Destroyng resources")
         with open('variables.json', 'r') as f:

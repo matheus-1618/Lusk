@@ -29,6 +29,12 @@
     align-items: center;
     justify-content: center;
   }
+  .link-group{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
   .lambdas{
     display: flex;
     flex-direction: column;

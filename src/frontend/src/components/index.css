@@ -55,7 +55,6 @@
   }
   
   .modal-buttons button {
-    display: flex;
     margin:10px;
     color: rgb(0, 0, 0);
     border: none;
@@ -64,6 +63,7 @@
     border-radius: 5px;
     font-size: 2rem;
     outline: none; 
+    text-decoration:none;
     transition-duration: 0.4s;
   }
 

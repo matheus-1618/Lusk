@@ -2,12 +2,10 @@ from fastapi import FastAPI,HTTPException,Query,Path
 from fastapi.responses import HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 from basemodels import *
-from typing import Annotated
 from Lusk import Lusk
 from dotenv import load_dotenv
 import json
 import os
-
 
 app = FastAPI()
 app.add_middleware(CORSMiddleware,
@@ -58,7 +56,6 @@ async def display_resources():
     except:
         raise HTTPException(status_code=404, detail="No resources found")
 
-
 @app.get("/lambda",status_code=200)
 async def display_lambdas():
     lambda_functions_names = lusk.get_lambdas()
@@ -69,8 +66,9 @@ async def display_lambdas():
 @app.post("/lambda",status_code=201)
 async def deploy_lambda(lambda_number: Lambda_number):
     try:
-        return lusk.deploy_lambda_function(int(lambda_number.number))
-        return {"response":"sucessfull deployed"}
+        functions = lusk.deploy_lambda_function(int(lambda_number.number))
+        return {"response":"sucessfull deployed",
+                "link": functions }
     except Exception as error:
         raise HTTPException(status_code=500, detail=f"{error}")
     
@@ -85,8 +83,9 @@ async def create_table(table: Table_name):
 @app.post("/amplify",status_code=201)
 async def deploy_app(app_name: App_name):
     try:
-        lusk.create_amplify_app(app_name.name)
-        return {"response":"sucessfull created"}
+        link = lusk.create_amplify_app(repo_name = app_name.name)
+        return {"response":"sucessfull created",
+                "link": link}
     except Exception as error:
         raise HTTPException(status_code=500, detail=f"{error}")
     
@@ -97,4 +96,3 @@ async def deploy_app():
         return {"response":"sucessfull updated"}
     except Exception as error:
         raise HTTPException(status_code=500, detail=f"{error}")
-    

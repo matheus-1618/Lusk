@@ -15,7 +15,7 @@ function App() {
 
   async function doPostRequest() {
     let payload = { 'id':Math.floor(Math.random() * 10000).toString(), name: inputValue, occupation: 'gardener' };
-    let res = await axios.post('https://3x5xloi6cb.execute-api.us-east-1.amazonaws.com/prod/execution', payload);
+    let res = await axios.post('https://5c4sot6le9.execute-api.us-east-1.amazonaws.com/prod/execution', payload);
     let data = res.data;
     console.log(data);
     setResponse(data);
@@ -23,7 +23,7 @@ function App() {
 
 async function doGetRequest() {
   let payload = {};
-  let res = await axios.post('https://bjn3rhwgq6.execute-api.us-east-1.amazonaws.com/prod/execution', payload);
+  let res = await axios.post('https://jzb04t91cb.execute-api.us-east-1.amazonaws.com/prod/execution', payload);
   let data = res.data;
   console.log(data);
   setValues(data);

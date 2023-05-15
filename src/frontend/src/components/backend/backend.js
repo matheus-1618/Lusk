@@ -13,12 +13,14 @@ export default function Backend(props) {
     const [showModalLambda, setShowModalLambda] = useState(false);
     const [showModalDynamo, setShowModalDynamo] = useState(false);
     const [creating, setCreating] = useState(false);
+    const [links, setLinks] = useState([]);
     const [table, setTable] = useState("");
     const navigate = useNavigate();
 
     const handleModalLambda = () => {
         get_lambdas();
         setShowModalLambda(!showModalLambda);
+        setLinks([]);
     };
 
     const handleModalDynamo = () => {
@@ -46,17 +48,22 @@ export default function Backend(props) {
         setLambdas(data);
     };
 
-        async function deploy_lambda(index) {
-            setCreating(true);
-            let payload = {
-                "number": index
-              };
-            let res = await axios.post('http://localhost:5200/lambda',payload);
-            let data = res.data;
-            console.log(data);
-            setCreating(false);
-            navigate('/resources')
-        };
+      async function deploy_lambda(index) {
+          setCreating(true);
+          let payload = {
+              "number": index
+            };
+          let res = await axios.post('http://localhost:5200/lambda',payload);
+          let data = res.data;
+          setCreating(false);
+          let real_links = [];
+          for (var link of data.link.split('\n')){
+            if (link.length > 4){
+              real_links.push(link);
+            }
+          }
+          setLinks(real_links);
+      };
 
         async function createTable() {
             setCreating(true);
@@ -87,6 +94,25 @@ return (
                   </div>
                   </>)
                   :
+                  (links.length !== 0 ? 
+                    (<>
+                      <h2>Your API's endpoints:</h2>
+                      <div className="link-group">
+                        {links.map((item, index) => (
+                          <Link to={item.split('"')[1]+"/execution"} target="_blank">
+                            <a target="_blank">{item.split('"')[1]+"/execution"}</a>
+                          </Link>
+                            ))}
+                         
+                      </div>
+                      <div className="modal-buttons">
+                        <button className="buttons" onClick={handleModalLambda}>Return</button>
+                        <Link to="https://reqbin.com/" target="_blank">
+                          <button className="buttons" onClick={null}>Test the API's POST methods here</button>
+                        </Link>
+                      </div>
+                      </>)
+                  :
                   (<>
                   <h2>Select the Lambda Function which you want to deploy</h2>
                   <div className="lambda-group">
@@ -100,43 +126,45 @@ return (
                   <div className="modal-buttons">
                     <button className="buttons" onClick={handleModalLambda}>Cancel</button>
                   </div>
-                  </>)}
+                  </>)
+                  )
+                  }
                   
                 </div>
               </div>
       )}
 
-{showModalDynamo && (
-                <div className="modal">
-                <div className="modal-content">
-                  {creating ? 
-                  (<>
-                  <div className="destroy">
-                  <p>Creating table</p>
-                  <img className="spin" src={Gif}></img>
-                  </div>
-                  </>)
-                  :
-                  (<>
-                  <h2>What is the name of the DynamoDB table?</h2>
-                  <div className="form-div">
-                    <input
-                        className="login-input"
-                        placeholder="Dynamo Table"
-                        value={table}
-                        onChange={(e) => setTable(e.target.value)}
-                        required
-                    />
+    {showModalDynamo && (
+                    <div className="modal">
+                    <div className="modal-content">
+                    {creating ? 
+                    (<>
+                    <div className="destroy">
+                    <p>Creating table</p>
+                    <img className="spin" src={Gif}></img>
                     </div>
-                  <div className="modal-buttons">
-                    <button className="buttons" onClick={handleModalDynamo}>Cancel</button>
-                    <button className="buttons" onClick={createTable}>Create</button>
-                  </div>
-                  </>)}
-                  
+                    </>)
+                    :
+                    (<>
+                    <h2>What is the name of the DynamoDB table?</h2>
+                    <div className="form-div">
+                        <input
+                            className="login-input"
+                            placeholder="Dynamo Table"
+                            value={table}
+                            onChange={(e) => setTable(e.target.value)}
+                            required
+                        />
+                        </div>
+                    <div className="modal-buttons">
+                        <button className="buttons" onClick={handleModalDynamo}>Cancel</button>
+                        <button className="buttons" onClick={createTable}>Create</button>
+                    </div>
+                    </>)}
+                    
+                    </div>
                 </div>
-              </div>
-      )}
+        )}
 
         <Link to="/backend" className="backend-item" onClick={handleModalLambda}>
             <div className="backend-api">
