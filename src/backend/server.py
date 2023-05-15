@@ -54,8 +54,38 @@ async def display_resources():
                 data = json.load(f)['resources']
         for resource in data:
             resources.append(resource['type'])
-        return resources
+        return {'response':resources}
     except:
         raise HTTPException(status_code=404, detail="No resources found")
 
 
+@app.get("/lambda",status_code=200)
+async def display_lambdas():
+    lambda_functions_names = lusk.get_lambdas()
+    if len(lambda_functions_names) != 0:
+        return {'response':lambda_functions_names}
+    raise HTTPException(status_code=404, detail="No lambdas functions found")
+
+@app.post("/lambda",status_code=201)
+async def deploy_lambda(lambda_number: Lambda_number):
+    try:
+        return lusk.deploy_lambda_function(int(lambda_number.number))
+        return {"response":"sucessfull deployed"}
+    except Exception as error:
+        raise HTTPException(status_code=500, detail=f"{error}")
+
+@app.post("/amplify",status_code=201)
+async def deploy_app(app_name: App_name):
+    try:
+        lusk.create_amplify_app(app_name.name)
+        return {"response":"sucessfull created"}
+    except Exception as error:
+        raise HTTPException(status_code=500, detail=f"{error}")
+    
+@app.post("/update",status_code=200)
+async def deploy_app():
+    try:
+        lusk.update_app()
+        return {"response":"sucessfull updated"}
+    except Exception as error:
+        raise HTTPException(status_code=500, detail=f"{error}")

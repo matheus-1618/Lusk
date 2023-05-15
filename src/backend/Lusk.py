@@ -81,14 +81,18 @@ class Lusk:
         print(f"[LUSK] Applcation URL: main.{response['app']['defaultDomain']}")
         os.chdir('../src/backend/')
         self.created_app = True
-        
-    def deploy_lambda_function(self, function_number:int = None):
+    
+    def get_lambdas(self):
         lambda_functions_names = []
         lambda_folder = os.getcwd().split('/src/backend')[0] +'/lambda_functions/'
         for dir, subfolders, files in os.walk(os.path.abspath(lambda_folder)):
             for i,file in enumerate(files):
                 print(f'{i+1} - ' + os.path.join(dir,file).split('/lambda_functions/')[-1])
                 lambda_functions_names.append(os.path.join(dir,file).split('/lambda_functions/')[-1].split('.py')[0])
+        return lambda_functions_names
+
+    def deploy_lambda_function(self, function_number:int = None):
+        lambda_functions_names = self.get_lambdas()
         if function_number is None:
             number_name = int(input('Write the number of the function which you want to deploy: '))
             function_name = lambda_functions_names[number_name-1]
@@ -100,7 +104,7 @@ class Lusk:
         os.chdir('../src/backend/')
         with open('variables.json', 'r') as f:
             data = json.load(f)
-
+        
         # Adicionar a nova função
         new_function = {
         "name": function_name,
@@ -111,24 +115,24 @@ class Lusk:
         }
 
         data['functions'].append(new_function)
-
+        
         # Salvar o arquivo JSON modificado
         with open('variables.json', 'w') as f:
             json.dump(data, f, indent=2)
-
+        
         os.chdir('../../terraform/')
         os.system('terraform init')
         os.system(f'''terraform apply -target=module.lambda -var="access_key={self.aws_key_id}" -var="secret_key={self.aws_secret_id}" -var-file=../src/backend/variables.json -auto-approve''')
 
         os.chdir('../lambda_functions/')
         os.system(f"rm {function_name}.zip")
-
+        
         # Executa o comando `terraform apply` e captura a saída
-        output = subprocess.check_output(["terraform", "output", "my_lambda_api_endpoint"], cwd=os.getcwd().split('/lambda_functions')[0]+'/terraform')
+        output =  subprocess.check_output(["terraform", "output", "my_lambda_api_endpoint"], cwd=os.getcwd().split('/lambda_functions')[0]+'/terraform')
 
         # Converte a saída em uma string decodificando os bytes usando o formato UTF-8
         output_str = output.decode("utf-8")
-
+    
         # Imprime a saída
         myobj = {'id': '35', 'name':'Matheus'}
         x = requests.post(output_str.split('"')[1]+'/execution', json = myobj)

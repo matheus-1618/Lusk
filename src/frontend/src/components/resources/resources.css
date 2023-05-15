@@ -65,4 +65,22 @@
     position: absolute; top: 0; left: 0; bottom: 0; right: 0; 
 }
 
+.noresources-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
+.nores-image{
+  width: 250px;
+  height: 250px;
+  filter: saturate(500%) contrast(800%) brightness(500%) 
+  invert(100%) sepia(50%) hue-rotate(120deg); 
+}
+.noresources{
+  background-image: linear-gradient(rgb(255, 255, 255), rgb(9, 227, 238));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 8rem;
+}
