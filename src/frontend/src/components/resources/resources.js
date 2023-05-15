@@ -7,9 +7,6 @@ import axios from 'axios';
 
 
 export default function Resources(props) {
-    const ref = useRef(null);
-    const [progress, setProgress] = useState(null);
-    const [usuario, setUsuario] = useState(null);
     const [resources, setResources] = useState([]);
 
     useEffect(() => {
@@ -39,7 +36,7 @@ export default function Resources(props) {
 return (
     <div className="Resources">
     <header className="Resources-header">
-        <Bar home={true} user="ok"/> 
+        <Bar home={false} user="ok"/> 
      <div className="resources-container">
 
         {resources.length ? <></>

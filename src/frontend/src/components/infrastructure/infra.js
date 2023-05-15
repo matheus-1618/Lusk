@@ -8,9 +8,6 @@ import Backend from "../../assets/backend.png"
 import Frontend from "../../assets/frontend.png"
 
 export default function Infra(props) {
-    const ref = useRef(null);
-    const [progress, setProgress] = useState(null);
-    const [usuario, setUsuario] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -26,13 +23,13 @@ export default function Infra(props) {
 return (
     <div className="Infra">
     <header className="Infra-header">
-        <Bar home={true} user="ok"/> 
+        <Bar home={false} user="ok"/> 
      <div className="infra-container">
-        <Link to="/resources" className="infra-item">
+        <Link to="/backend" className="infra-item">
             <img className="infra-img" src={Backend}></img>
             <h1 className="infra-font">Backend</h1>
           </Link>
-        <Link to="/resources" className="infra-item">
+        <Link to="/frontend" className="infra-item">
             <img className="infra-img" src={Frontend}></img>
             <h1 className="infra-font">Frontend</h1>
         </Link>

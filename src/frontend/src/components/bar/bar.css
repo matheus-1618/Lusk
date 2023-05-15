@@ -68,6 +68,14 @@
     transform: scale(1.01);
 }
 
+.arrow{
+    color:rgb(12, 245, 249);
+    position: fixed;
+    left: 10px;
+    text-decoration: none;
+    transition-duration: 0.4s;
+}
+
 .return {
     color:rgb(6, 203, 238);
     position: fixed;

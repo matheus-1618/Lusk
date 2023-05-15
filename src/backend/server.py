@@ -11,7 +11,7 @@ import os
 
 app = FastAPI()
 app.add_middleware(CORSMiddleware,
-               allow_origins=["*"],
+               allow_origins=["http://localhost:3000"],
                allow_credentials=True,
                allow_methods=["*"],
                allow_headers=["*"],)
@@ -73,7 +73,15 @@ async def deploy_lambda(lambda_number: Lambda_number):
         return {"response":"sucessfull deployed"}
     except Exception as error:
         raise HTTPException(status_code=500, detail=f"{error}")
-
+    
+@app.post("/dynamo",status_code=201)
+async def create_table(table: Table_name):
+    try:
+        lusk.create_dynamo_db_table(table.name)
+        return {"response":"sucessfull created"}
+    except Exception as error:
+        raise HTTPException(status_code=500, detail=f"{error}")
+    
 @app.post("/amplify",status_code=201)
 async def deploy_app(app_name: App_name):
     try:
@@ -89,3 +97,4 @@ async def deploy_app():
         return {"response":"sucessfull updated"}
     except Exception as error:
         raise HTTPException(status_code=500, detail=f"{error}")
+    

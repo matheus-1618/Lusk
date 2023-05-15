@@ -29,7 +29,7 @@ function Login() {
   return (
     <div className="Login">
       <header className="Login-header">
-        <Bar home={true} user="ok"/> 
+        <Bar home={false} user="ok"/> 
         <div className="login-container">
           <form className="login-form" onSubmit={handleSubmit}>
             <h1 className="login-title">Credentials</h1>
