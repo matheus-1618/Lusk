@@ -5,3 +5,4 @@ pyfiglet
 python-dotenv
 fastapi
 uvicorn[standard]
+typing
