@@ -115,7 +115,7 @@ return (
                     (link.length !== 0 ? 
                         <>
                         <h2>Your app link:</h2>
-                        <Link to={link}>
+                        <Link to={link} target="_blank">
                             <a>{link}</a>
                         </Link>
                          <div className="modal-buttons">

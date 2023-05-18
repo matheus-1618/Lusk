@@ -31,21 +31,39 @@ With Lusk, you don't have to manage the underlying configuration of servers, sub
 
   * Create your own web application (there is a React template in **webapp/** folder);
 
-  * Create your processing functions (AWS Lambdas functions) or use rady-made functions in the **lambda_functions** folder, which can integrate with *DataBases*, *process requests* and *more*, all behind managed API Endpoints. 
+  * Create your processing functions (AWS Lambdas functions) or use ready-made functions in the **lambda_functions** folder, which can integrate with *DataBases*, *process requests* and *more*, all behind managed API Endpoints. 
 
    Easy isn't?
 
- <div align="center">
+ <div align="center" >
 
-![image](https://github.com/matheus-1618/Lusk/assets/71362534/11a6a1bc-2b3b-49af-9f52-a9599ed47161)
- <br>
+ <img align="center" style="width:500px" src='assets/cloud-computing.gif'>
 
  </div >
 
 
-For experiment the Application, visit [here](https://github.com/matheus-1618/Lusk).
 
-If you want to discover the underlying steps to build this infrastructure using Terraform, follow the [roadmap](https://matheus-1618.github.io/Lusk-docs/roadmap/);
+## Build your own Lusk
+
+* Do want to create your own Serverless Architecture Management Plataform? 
+
+* Understand more about Cloud and IaC concepts with a hands-on tutorial? 
+
+* Integrate another services or applications in the Lusk?
+
+
+ <div align="center" >
+
+ <img align="center" style="width:500px" src='assets/build.gif'>
+
+ </div >
+
+**If you want to discover the underlying steps to build this infrastructure using Terraform or it's a curious person, follow the [Roadmap](https://matheus-1618.github.io/Lusk-docs/roadmap/), and create your own Plataform, learning and customizing as you wish .**
+
+
+## Enjoy a managed Full Stack Serverless archictecture 
+
+**With Lusk deploy a Full stack app become simplier.**
 
 <div align="center" style="max-width:38rem;">
   
