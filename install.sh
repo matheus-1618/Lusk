@@ -74,4 +74,4 @@ else
     echo "Enviroment ready"
 fi
 
-
+sudo apt-get install zip
