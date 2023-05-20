@@ -1,25 +1,3 @@
 {
-  "functions": [
-    {
-      "name": "hello_world",
-      "filename": "../lambda_functions/hello_world.zip",
-      "handler": "hello_world.lambda_handler",
-      "language": "python3.8",
-      "attach_role": true
-    },
-    {
-      "name": "insert_in_dynamo",
-      "filename": "../lambda_functions/insert_in_dynamo.zip",
-      "handler": "insert_in_dynamo.lambda_handler",
-      "language": "python3.8",
-      "attach_role": true
-    },
-    {
-      "name": "read_dynamo",
-      "filename": "../lambda_functions/read_dynamo.zip",
-      "handler": "read_dynamo.lambda_handler",
-      "language": "python3.8",
-      "attach_role": true
-    }
-  ]
+  "functions": []
 }
