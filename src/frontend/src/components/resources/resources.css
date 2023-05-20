@@ -33,17 +33,19 @@
 }
 
 .resources-item{
-    display: flex;
-    flex-direction:column;
-    align-items: center;
-    border-radius: 20px;
-    min-width: 30%;
-    background-color: transparent;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 0.9rem;
-    color: rgb(16, 16, 16);
-    transition-duration: 0.4s;
-    text-decoration: none;
+  display: flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  min-width: 30%;
+  margin: 10px;
+  background-image: linear-gradient(rgb(0, 132, 255), rgb(255, 255, 255));
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 0.9rem;
+  color: rgb(16, 16, 16);
+  transition-duration: 0.4s;
+  text-decoration: none;
 }
 
 .resources-item:hover{

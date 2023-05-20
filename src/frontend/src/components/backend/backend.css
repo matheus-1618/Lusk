@@ -69,10 +69,13 @@
 .backend-item{
     display: flex;
     flex-direction:column;
+    justify-content: center;
     align-items: center;
     border-radius: 20px;
-    min-width: 30%;
-    background-color: transparent;
+    min-width: 35%;
+    height: 22rem;
+    margin: 10px;
+    background-image: linear-gradient(rgb(0, 132, 255), rgb(255, 255, 255));
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 0.9rem;
     color: rgb(16, 16, 16);
@@ -82,7 +85,7 @@
 
 .backend-item:hover{
     display: flex;
-    transform: scale(1.03);
+    transform: scale(1.01);
     color:rgb(6, 81, 221);
 }
 

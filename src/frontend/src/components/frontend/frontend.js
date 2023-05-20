@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Bar from "../bar/bar";
 import axios from 'axios';
 import Gif from "../../assets/giphy.webp"
+import Amplify from "../../assets/amplify.jpeg"
 import { useNavigate } from 'react-router-dom';
 
 
@@ -148,7 +149,7 @@ return (
 
         <Link to="/frontend" className="frontend-item" onClick={handleModalAmplify}>
             <div className="frontend-api">
-            <img className="frontend-img" src="https://res.cloudinary.com/practicaldev/image/fetch/s--05bptNnM--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://day-journal.com/memo/images/logo/aws/amplify.png"></img> 
+            <img className="frontend-img" src={Amplify}></img> 
             </div>
             <h1 >Create Amplify Web App</h1> 
          </Link>

@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 import Bar from "../bar/bar";
 import axios from 'axios';
 import Gif from "../../assets/giphy.webp"
+import Api from "../../assets/api.png"
+import Dynamo from "../../assets/dynamo.png"
+import Lambda from "../../assets/lambda.png"
 import { useNavigate } from 'react-router-dom';
 
 
@@ -118,7 +121,7 @@ return (
                   <div className="lambda-group">
                     {lambdas.map((item, index) => (
                         <div key={index} className="lambdas" onClick={() => deploy_lambda(index)}>
-                            <img className="resources-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Amazon_Lambda_architecture_logo.svg/1200px-Amazon_Lambda_architecture_logo.svg.png"></img>       
+                            <img className="resources-img" src={Lambda}></img>       
                             <h1 className="lambdas-font">{item}</h1> 
                         </div>
                         ))}
@@ -168,16 +171,16 @@ return (
 
         <Link to="/backend" className="backend-item" onClick={handleModalLambda}>
             <div className="backend-api">
-                <img className="backend-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Amazon_Lambda_architecture_logo.svg/1200px-Amazon_Lambda_architecture_logo.svg.png"></img> 
+                <img className="backend-img" src={Lambda}></img> 
                 <h1 className="plus" >+</h1>
-                <img className="backend-img" src="https://seeklogo.com/images/A/aws-api-gateway-logo-368082D845-seeklogo.com.png"></img>     
+                <img className="backend-img" src={Api}></img>     
             </div>
             <h1 >Create API Gateway integration<br></br> with Lambda Function</h1> 
          </Link>
 
 
         <Link to="/backend" className="backend-item" onClick={handleModalDynamo}>
-            <img className="backend-img" src="https://amazon-dynamodb-labs.com/images/Amazon-DynamoDB.png"></img>
+            <img className="backend-img" src={Dynamo}></img>
             <h1 >Create Dynamo DB Table</h1>
           </Link>
         

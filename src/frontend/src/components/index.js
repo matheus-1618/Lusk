@@ -98,11 +98,11 @@ return (
             <img className="options-img" src={Credentials}></img>
             <h1 className="options-font">Change credentials</h1>
         </Link>
-        <Link to="https://us-east-1.console.aws.amazon.com/console/home?region=us-east-1" className="options-item">
+        <Link to="https://us-east-1.console.aws.amazon.com/console/home?region=us-east-1" target="_blank" className="options-item">
             <img className="options-img" src={AWSlogo}></img>
             <h1 className="options-font">AWS Console</h1>
         </Link>
-        <Link to="https://matheus-1618.github.io/Lusk-docs/" className="options-item">
+        <Link to="https://matheus-1618.github.io/Lusk-docs/" target="_blank" className="options-item">
             <img className="options-img" src={Docs}></img>
             <h1 className="options-font">Lusk Documentation</h1>
         </Link>

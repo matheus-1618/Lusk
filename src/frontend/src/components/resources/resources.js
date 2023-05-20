@@ -4,6 +4,12 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Bar from "../bar/bar";
 import axios from 'axios';
+import Amplify from "../../assets/amplify.jpeg"
+import Api from "../../assets/api.png"
+import Dynamo from "../../assets/dynamo.png"
+import Iam from "../../assets/iam.png"
+import Lambda from "../../assets/lambda.png"
+import Noresoc from "../../assets/noresources.png"
 
 
 export default function Resources(props) {
@@ -43,45 +49,45 @@ return (
         :
         <div className="noresources-container">
             <h1 className="noresources">No Resources created</h1>
-            <img className="nores-image" src="https://static.thenounproject.com/png/203873-200.png"/>
+            <img className="nores-image" src={Noresoc}/>
         </div>
         }
 
         { resources.includes('lambda') ?
-        <Link to="/records" className="resources-item">
-            <img className="resources-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Amazon_Lambda_architecture_logo.svg/1200px-Amazon_Lambda_architecture_logo.svg.png"></img>       
+        <Link to="https://us-east-1.console.aws.amazon.com/lambda/home?region=us-east-1#/functions" target="_blank" className="resources-item">
+            <img className="resources-img" src={Lambda}></img>       
             <h1 >Lambda functions</h1>
          </Link>
          : <></>
          }
 
          { resources.includes('dynamodb') ?
-        <Link to="/records" className="resources-item">
-            <img className="resources-img" src="https://amazon-dynamodb-labs.com/images/Amazon-DynamoDB.png"></img>
+        <Link to="https://us-east-1.console.aws.amazon.com/dynamodbv2/home?region=us-east-1#tables" target="_blank" className="resources-item">
+            <img className="resources-img" src={Dynamo}></img>
             <h1 >Dynamo DB Table</h1>
           </Link>
            : <></>
         }
 
         { resources.includes('amplify') ?
-        <Link to="/transcripts" className="resources-item">
-            <img className="resources-img" src="https://res.cloudinary.com/practicaldev/image/fetch/s--05bptNnM--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://day-journal.com/memo/images/logo/aws/amplify.png"></img>
+        <Link to="https://us-east-1.console.aws.amazon.com/amplify/home?region=us-east-1#/" target="_blank" className="resources-item">
+            <img className="resources-img" src={Amplify}></img>
             <h1 >Amplify Hosting</h1>
         </Link>
          : <></>
         }
 
         { resources.includes('api') ?
-        <Link to="/bot" className="resources-item">
-            <img className="resources-img" src="https://seeklogo.com/images/A/aws-api-gateway-logo-368082D845-seeklogo.com.png"></img>
+        <Link to="https://us-east-1.console.aws.amazon.com/apigateway/home?region=us-east-1#/apis" target="_blank" className="resources-item">
+            <img className="resources-img" src={Api}></img>
             <h1 >API Gateway</h1>
         </Link>
          : <></>
         }
 
         { resources.includes('iam') ?
-        <Link to="/bot" className="resources-item">
-            <img className="resources-img" src="https://storage.googleapis.com/xebia-blog/1/2021/09/iam.png"></img>
+        <Link to="https://us-east-1.console.aws.amazon.com/iamv2/home?region=us-east-1#/home" target="_blank" className="resources-item">
+            <img className="resources-img" src={Iam}></img>
             <h1 >IAM roles</h1>
         </Link>
             : <></>
