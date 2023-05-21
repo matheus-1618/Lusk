@@ -45,5 +45,5 @@ if ! command -v python3 &> /dev/null; then
 else
     echo "Python e Python 3 já estão instalados!"
 fi
-
+sudo apt-get install zip
 
