@@ -4,7 +4,7 @@ from git import Repo
 import boto3
 import subprocess
 
-def create_amplify_app(repo_name = None):
+def deploy_infrastructure(repo_name = None):
     github_token = os.getenv("GITHUB_TOKEN")
     g = Github(github_token)
 
@@ -12,6 +12,8 @@ def create_amplify_app(repo_name = None):
 
     if repo_name == None:
         repo_name = input("--> Qual o nome do repositorio desejado? ")
+    
+    table_name = input("-->Qual o nome da tabela de Banco de dados a ser criada?")
 
     repo_description = 'Base repository to automatic deploy and integration with Amplify via Lusk'
     repo = g.get_user().create_repo(repo_name, description=repo_description, auto_init=True,private=True)
@@ -34,7 +36,7 @@ def create_amplify_app(repo_name = None):
 
     os.chdir('terraform/')
     os.system('terraform init')
-    os.system(f'''terraform apply -target=module.amplify  -var="url_repository={repo_url.split('.git')[0]}" -var="app_name={repo_name}" -var="token={github_token}" -auto-approve''')
+    os.system(f'''terraform apply -var-file=lambda/variables.json -var="name_table={table_name}" -var="url_repository={repo_url.split('.git')[0]}" -var="app_name={repo_name}" -var="token={github_token}" -auto-approve''')
 
     output = subprocess.check_output(["terraform", "output", "amplify_url"], cwd=os.getcwd())
     output_str = output.decode("utf-8")
@@ -51,4 +53,4 @@ def create_amplify_app(repo_name = None):
     print(f"[LUSK] Applcation URL: main.{response['app']['defaultDomain']}")
 
 if __name__ == "__main__":
-    create_amplify_app()
+    deploy_infrastructure()
