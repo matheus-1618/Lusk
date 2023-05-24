@@ -17,6 +17,11 @@ export default function Resources(props) {
 
     useEffect(() => {
         if (navigator.platform === 'Win32'){
+            var font = document.getElementsByClassName("noresources");
+            var img = document.getElementsByClassName("nores-image");
+            font[0].style.fontSize = "5rem";
+            img[0].style.width = "180px";
+            img[0].style.height = "180px";
             var images = document.getElementsByClassName("resources-img");
             for (var i = 0; i < images.length; i++) {
                 images[i].style.width="80px";

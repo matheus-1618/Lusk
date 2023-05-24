@@ -37,10 +37,15 @@ export default function Backend(props) {
 
     useEffect(() => {
         if (navigator.platform === 'Win32'){
-            var images = document.getElementsByClassName("resources-img");
+            var images = document.getElementsByClassName("backend-img");
             for (var i = 0; i < images.length; i++) {
                 images[i].style.width="80px";
                 images[i].style.height="80px";
+            }
+            var itens = document.getElementsByClassName("backend-item");
+            for (var i = 0; i < itens.length; i++) {
+              itens[i].style.minWidth="20rem";
+              itens[i].style.height="17rem";
             }
         }
       }, []);
