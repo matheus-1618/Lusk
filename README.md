@@ -69,4 +69,77 @@ With Lusk, you don't have to manage the underlying configuration of servers, sub
   
 ![image](https://github.com/matheus-1618/Lusk/assets/71362534/dbfffecc-63bc-404b-bf25-300cba6678cc)
 
+:warning: **It is desirable to have your Github credentials in the machine/system which you are executing the application. If you don't have, configure it following this [tutorial](https://www.freecodecamp.org/portuguese/news/como-resolver-o-problema-de-o-git-pedir-sempre-as-credenciais-do-usuario/)**.
+
+
+### Using Graphical Interface
+
+1. Clone the repository:
+```bash
+git clone https://github.com/matheus-1618/Lusk
+```
+
+2. Install dependencies (if you already have some installed, it'll be jumped):
+```bash
+./install.sh
+```
+
+3. Run the graphical interface:
+```bash
+./run.sh
+```
+
+4. Log with your [AWS credentials](https://docs.aws.amazon.com/powershell/latest/userguide/pstools-appendix-sign-up.html) and [Github token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) (used internal only in a **.env** file):
+<img src='assets/login.png'>
+
+#### Creating your first application in 5 clicks 
+
+1. Create an Dynamo DB NoSQL Database:
+<img src='assets/idynamo.png'>
+
+2. Create two Lambda Functions behind an API Gateway endpoint's to interact with Dynamo:
+<img src='assets/iapi.png'>
+
+    Deploy **insert_in_dynamo** first, and **read_dynamo** after (you can test it):
+    <br>
+    <img src='assets/iapi2.png'>
+
+3. Integrate the API's endpoints in the **webapp/App.js** file to feedback the Frontend interface:
+<img src="./assets/webpage.png">
+
+4. Create an Web Application hosted on Amplify Hosting with updates with CI/CD in your Github account:
+<img src='assets/iwebapp.png'>
+
+5. Clean, if you wish, your infrastructure with one click:
+<img src='assets/destroy.png'>
+
+#### Guided step-by-step tutorial
+<div class="video-wrapper" align="center">
+ <iframe width="560" height="315" src="https://www.youtube.com/embed/dkKAsgjP54w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+
+### Using CLI Interface
+
+If you prefer use a Command Line interface, follow the steps above:
+
+1. Clone the repository:
+```bash
+git clone https://github.com/matheus-1618/Lusk
+```
+
+2. Install dependencies (if you already have some installed, it'll be jumped):
+```bash
+./install.sh
+```
+
+3. Run the Command Line interface:
+```bash
+./cli.sh
+```
+4. Fill out the credentials to create an **.env** file:
+<img src='assets/cli.png'>
+
+5. Enjoy the Application!
+<img src='assets/cloud.gif'>
+
 </div>
