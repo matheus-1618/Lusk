@@ -51,7 +51,6 @@ With Lusk, you don't have to manage the underlying configuration of servers, sub
 
 * Integrate another services or applications in the Lusk?
 
-
  <div align="center" >
 
  <img align="center" style="width:500px" src='assets/build.gif'>
@@ -68,6 +67,7 @@ With Lusk, you don't have to manage the underlying configuration of servers, sub
 <div align="center" style="max-width:38rem;">
   
 ![image](https://github.com/matheus-1618/Lusk/assets/71362534/dbfffecc-63bc-404b-bf25-300cba6678cc)
+ </div>
 
 :warning: **It is desirable to have your Github credentials in the machine/system which you are executing the application. If you don't have, configure it following this [tutorial](https://www.freecodecamp.org/portuguese/news/como-resolver-o-problema-de-o-git-pedir-sempre-as-credenciais-do-usuario/)**.
 
@@ -90,33 +90,43 @@ git clone https://github.com/matheus-1618/Lusk
 ```
 
 4. Log with your [AWS credentials](https://docs.aws.amazon.com/powershell/latest/userguide/pstools-appendix-sign-up.html) and [Github token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) (used internal only in a **.env** file):
-<img src='assets/login.png'>
+<div align="center" >
+<img style="width:50rem;" src='assets/login.png'>
+ </div>
 
 #### Creating your first application in 5 clicks 
 
 1. Create an Dynamo DB NoSQL Database:
-<img src='assets/idynamo.png'>
+ <div align="center" >
+ <img style="width:50rem;" src='assets/idynamo.png'>
+ </div>
 
 2. Create two Lambda Functions behind an API Gateway endpoint's to interact with Dynamo:
-<img src='assets/iapi.png'>
+  <div align="center" >
+  <img style="width:50rem;" src='assets/iapi.png'>
+ </div>
 
-    Deploy **insert_in_dynamo** first, and **read_dynamo** after (you can test it):
-    <br>
-    <img src='assets/iapi2.png'>
+ Deploy **insert_in_dynamo** first, and **read_dynamo** after (you can test it):
+ <br>
+  <div align="center" >
+ <img style="width:50rem;" src='assets/iapi2.png'>
+ </div>
 
 3. Integrate the API's endpoints in the **webapp/App.js** file to feedback the Frontend interface:
-<img src="./assets/webpage.png">
+ <div align="center" >
+ <img style="width:50rem;" src="./assets/webpage.png">
+ </div>
 
 4. Create an Web Application hosted on Amplify Hosting with updates with CI/CD in your Github account:
-<img src='assets/iwebapp.png'>
+ <div align="center" >
+<img style="width:50rem;" src='assets/iwebapp.png'>
+ </div>
 
 5. Clean, if you wish, your infrastructure with one click:
-<img src='assets/destroy.png'>
+ <div align="center" >
+<img style="width:50rem;" src='assets/destroy.png'>
+ </div>
 
-#### Guided step-by-step tutorial
-<div class="video-wrapper" align="center">
- <iframe width="560" height="315" src="https://www.youtube.com/embed/dkKAsgjP54w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-</div>
 
 ### Using CLI Interface
 
@@ -137,9 +147,13 @@ git clone https://github.com/matheus-1618/Lusk
 ./cli.sh
 ```
 4. Fill out the credentials to create an **.env** file:
-<img src='assets/cli.png'>
+ <div align="center" >
+<img style="width:50rem;" src='assets/cli.png'>
+ </div>
 
 5. Enjoy the Application!
-<img src='assets/cloud.gif'>
+ <div align="center" >
+<img style="width:50rem;"/ src='assets/cloud.gif'>
+ </div>
 
-</div>
+
