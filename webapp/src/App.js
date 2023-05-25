@@ -12,22 +12,21 @@ function App() {
     setInputValue(event.target.value);
   }
   
-
   async function doPostRequest() {
-    let payload = { 'id':Math.floor(Math.random() * 10000).toString(), name: inputValue, occupation: 'gardener' };
-    let res = await axios.post('https://40bc3edjdd.execute-api.us-east-1.amazonaws.com/prod/execution', payload);
+    let payload = { 'id':Math.floor(Math.random() * 10000).toString(), name: inputValue};
+    let res = await axios.post('<insert_in_dynamo_url>/execution', payload);
     let data = res.data;
     console.log(data);
     setResponse(data);
 };
 
-async function doGetRequest() {
-  let payload = {};
-  let res = await axios.post('https://tm6tofxgqc.execute-api.us-east-1.amazonaws.com/prod/execution', payload);
-  let data = res.data;
-  console.log(data);
-  setValues(data);
-};
+  async function doGetRequest() {
+    let payload = {};
+    let res = await axios.post('<read_dynamo_url>/execution', payload);
+    let data = res.data;
+    console.log(data);
+    setValues(data);
+  };
 
 
   return (

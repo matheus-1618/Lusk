@@ -9,22 +9,27 @@ def lambda_handler(event, context):
 
     # Obtém o corpo da requisição
     print(event)
-    body = json.loads(event['body'])
-    print(body)
+    try: 
+        body = json.loads(event['body'])
+        print(body)
 
-    response = client.list_tables()
-    table_name = response['TableNames'][0]
+        response = client.list_tables()
+        table_name = response['TableNames'][0]
 
-    table = dynamodb.Table(table_name)
+        table = dynamodb.Table(table_name)
 
+        status = ''
+        # Insere o novo item na tabela
+        response = table.put_item(
+            Item={
+                'id': body['id'],
+                'name': body['name']
+            }
+        )
+        status = 'Item inserido com sucesso'
+    except:
+        status = 'Error. Expected json content: {"id":"<number>","name":"<name>"}'
 
-    # Insere o novo item na tabela
-    response = table.put_item(
-        Item={
-            'id': body['id'],
-            'name': body['name']
-        }
-    )
 
     # Retorna a resposta da operação
     return {
@@ -37,6 +42,6 @@ def lambda_handler(event, context):
             "Access-Control-Allow-Origin" : "*",
             "X-Requested-With" : "*"
         },
-        'body': json.dumps('Item inserido com sucesso')
+        'body': json.dumps(status)
     }
 

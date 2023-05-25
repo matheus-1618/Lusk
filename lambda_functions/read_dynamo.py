@@ -1,10 +1,6 @@
 import boto3
 import json
 
-
-
-
-
 # Função Lambda que retorna todos os itens da tabela
 def lambda_handler(event, context):
     client = boto3.client('dynamodb')

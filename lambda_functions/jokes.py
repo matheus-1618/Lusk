@@ -2,8 +2,6 @@ import json
 import urllib3
 
 def lambda_handler(event, context):
-
-
     http = urllib3.PoolManager()
     r = http.request('GET', "https://official-joke-api.appspot.com/random_joke")
 
