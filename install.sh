@@ -75,3 +75,4 @@ else
 fi
 
 sudo apt-get install zip
+pip install virtualenv
